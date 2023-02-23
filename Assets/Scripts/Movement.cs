@@ -30,36 +30,21 @@ public class Movement : MonoBehaviour
         {
             animator.SetFloat("Velocity", 0f);
         }
-
-        Vector3 position = transform.position;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            rigid.AddRelativeForce(0, 0, speed * Time.deltaTime);
-        }
-
-        else if (Input.GetKey(KeyCode.S))
-        {
-            rigid.AddRelativeForce(0, 0, -speed * Time.deltaTime);
-        }
-
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            rigid.AddRelativeTorque(0, -rotationSpeed * Time.deltaTime, 0);
-        }
-
-        else if (Input.GetKey(KeyCode.D))
-        {
-            rigid.AddRelativeTorque(0, rotationSpeed * Time.deltaTime, 0);
-        }
     }
 
     void FixedUpdate()
     {
+        Vector3 input = new Vector3(0, Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
         if (rigid.velocity.magnitude > maxSpeed)
         {
             rigid.velocity = rigid.velocity.normalized * maxSpeed;
+        }
+
+        if (input.magnitude > 0.001)
+        {
+            rigid.AddRelativeForce(new Vector3(0, 0, input.z * speed * Time.deltaTime));
+            rigid.AddRelativeTorque(new Vector3(0, rotationSpeed * input.y * Time.deltaTime, 0));
         }
     }
 }
