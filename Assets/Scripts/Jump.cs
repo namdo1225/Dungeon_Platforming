@@ -62,7 +62,6 @@ public class Jump : MonoBehaviour
                 dash.cancelDash();
                 // TODO: add super dash here!
             }
-            Debug.Log("Jump");
             velocity = 25.0f;
             jump_count++;
             buffer_jump = false;
@@ -70,7 +69,6 @@ public class Jump : MonoBehaviour
         // fall down
         if (!isGrounded)
         {
-            Debug.Log("Falling");
             velocity -= acceleration * Time.deltaTime;
             if (velocity < -25.0f)
             {
@@ -80,11 +78,9 @@ public class Jump : MonoBehaviour
         // on the ground, not jumping
         if (velocity <= 0.0f && isGrounded)
         {
-            Debug.Log("Ground");
             velocity = 0.0f;
             jump_count = 0;
         }
-        Debug.Log(velocity + " " + isGrounded);
         Vector3 move = new Vector3();
         move.y = velocity * Time.deltaTime;
         controller.Move(move);

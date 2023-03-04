@@ -6,11 +6,9 @@ public class PlayerCamera : MonoBehaviour
 {
     public GameObject player;
     private Vector3 offset;
-    private float turnSpeed;
     void Start()
     {
         offset = transform.position - player.transform.position;
-        turnSpeed = 10.0f;
     }
 
     // Update is called once per frame

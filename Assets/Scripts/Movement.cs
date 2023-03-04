@@ -67,7 +67,6 @@ public class Movement : MonoBehaviour
         }
         // get rotation
         Vector3 direction = transform.TransformDirection(Vector3.forward);
-        Debug.Log(direction);
         direction.y = 0.0f;
         // do move
         controller.Move(direction * velocity * Time.deltaTime);
