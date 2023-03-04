@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
                     health = max_health;
                     knockback_speed = 0.0f;
                 }
+                // update heart UI here!
             }
             if (cur_time > 0.0f)
             {
