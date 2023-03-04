@@ -12,6 +12,7 @@ public class Dash : MonoBehaviour
     private float dash_velocity;
     private Vector3 dash_direction;
     private Camera cam;
+    private float initial_dash = 15.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class Dash : MonoBehaviour
         {
             dash_direction = transform.TransformDirection(Vector3.forward);
             dash_direction.y = 0.3f;
-            dash_velocity = 50.0f;
+            dash_velocity = initial_dash;
             cur_dashes++;
             jump.cancelJump();
         }
@@ -51,7 +52,7 @@ public class Dash : MonoBehaviour
         {
             StartDash();
         }
-        dash_velocity -= 50.0f * Time.deltaTime;
+        dash_velocity -= initial_dash * Time.deltaTime;
         if (dash_velocity < 0.0f)
         {
             dash_velocity = 0.0f;

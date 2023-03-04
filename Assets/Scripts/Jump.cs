@@ -14,6 +14,7 @@ public class Jump : MonoBehaviour
     public float buffer_timer;
     private float velocity;
     private const float acceleration = 25f;
+    private float initial_jump = 15.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +63,7 @@ public class Jump : MonoBehaviour
                 dash.cancelDash();
                 // TODO: add super dash here!
             }
-            velocity = 25.0f;
+            velocity = initial_jump;
             jump_count++;
             buffer_jump = false;
         }
@@ -70,9 +71,9 @@ public class Jump : MonoBehaviour
         if (!isGrounded)
         {
             velocity -= acceleration * Time.deltaTime;
-            if (velocity < -25.0f)
+            if (velocity < -initial_jump)
             {
-                velocity = -25.0f;
+                velocity = -initial_jump;
             }
         }
         // on the ground, not jumping
