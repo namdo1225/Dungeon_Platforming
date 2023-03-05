@@ -16,11 +16,18 @@ public class Dash : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField]
+    private AudioClip dashSFX;
+
+    private AudioSource audSrc;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         controller = this.GetComponent<CharacterController>();
+        audSrc = this.GetComponent<AudioSource>();
+
         cam = Camera.main;
         cur_dashes = 0;
         dash_direction = new Vector3(0, 0, 0);
@@ -30,6 +37,7 @@ public class Dash : MonoBehaviour
     void StartDash()
     {
         animator.SetBool("Dash", true);
+        audSrc.PlayOneShot(dashSFX);
         if (cur_dashes < max_dashes)
         {
             dash_direction = transform.TransformDirection(Vector3.forward);

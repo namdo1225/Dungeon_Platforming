@@ -12,12 +12,23 @@ public class Movement : MonoBehaviour
     private Rigidbody rigid;
     private Animator animator;
     private Camera cam;
+
+
+    [SerializeField]
+    private AudioClip stepSFX;
+    private AudioSource audSrc;
+
+    private float footStepInterval = 0.5f;
+    private float footStepDelta = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = this.GetComponent<CharacterController>();
         rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        audSrc = this.GetComponent<AudioSource>();
+
         cam = Camera.main;
         maxVelocity = 10.0f;
         acceleration = 20.0f;
@@ -34,6 +45,9 @@ public class Movement : MonoBehaviour
                 velocity = 0;
             velocity += acceleration * Time.deltaTime;
             animator.SetFloat("Velocity", 1);
+
+            playAudClip();
+
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -42,6 +56,8 @@ public class Movement : MonoBehaviour
                 velocity = 0;
             velocity -= acceleration * Time.deltaTime;
             animator.SetFloat("Velocity", 1);
+
+            playAudClip();
         }
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
@@ -71,5 +87,16 @@ public class Movement : MonoBehaviour
         direction.y = 0.0f;
         // do move
         controller.Move(direction * velocity * Time.deltaTime);
+        footStepDelta += Time.deltaTime;
+    }
+
+
+    private void playAudClip()
+    {
+        if (footStepDelta > footStepInterval)
+        {
+            footStepDelta = 0;
+            audSrc.PlayOneShot(stepSFX);
+        }
     }
 }

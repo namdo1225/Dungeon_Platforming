@@ -380,7 +380,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 458937436079165640, guid: c23c4bee30f450d44b3678a282fbbee8,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c5253ac4180b86148be426d67b1b6ef1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -493,6 +493,7 @@ MonoBehaviour:
   controller: {fileID: 2475064444397179222}
   jump: {fileID: 2475064444397179221}
   max_dashes: 1
+  dashSFX: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
 --- !u!114 &2475064444397179221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +512,8 @@ MonoBehaviour:
   isGrounded: 0
   buffer_jump: 0
   buffer_timer: 0
+  jumpSFX: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
+  landSFX: {fileID: 8300000, guid: eaae8fe8d600e1f459f34aa5757fa3b8, type: 3}
 --- !u!114 &2475064444397179223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2475064444397179222}
+  stepSFX: {fileID: 8300000, guid: 21070b8b5e91adc418a2431cbde9b60f, type: 3}
 --- !u!114 &4827434854740003555
 MonoBehaviour:
   m_ObjectHideFlags: 0

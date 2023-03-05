@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
         {
             checkpoint = checkpoints[0];
             changeCheckParticle(true);
+
         }
     }
 

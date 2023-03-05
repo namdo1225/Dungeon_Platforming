@@ -18,11 +18,22 @@ public class Jump : MonoBehaviour
 
     private Animator animator;
 
+    private bool alreadyLanded = true;
+
+    [SerializeField]
+    private AudioClip jumpSFX;
+    [SerializeField]
+    private AudioClip landSFX;
+
+    private AudioSource audSrc;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         controller = this.GetComponent<CharacterController>();
+        audSrc = this.GetComponent<AudioSource>();
+
         velocity = 0.0f;
         jump_count = 0;
         buffer_jump = false;
@@ -62,7 +73,9 @@ public class Jump : MonoBehaviour
         // start new jump
         if (buffer_jump && canJump())
         {
+            alreadyLanded = false;
             animator.SetBool("Jump", true);
+            audSrc.PlayOneShot(jumpSFX);
             if (dash.isDashing())
             {
                 dash.cancelDash();
@@ -84,7 +97,13 @@ public class Jump : MonoBehaviour
         // on the ground, not jumping
         if (velocity <= 0.0f && isGrounded)
         {
-            animator.SetBool("Jump", false);
+            if (!alreadyLanded)
+            {
+                animator.SetBool("Jump", false);
+                audSrc.PlayOneShot(landSFX);
+                alreadyLanded = true;
+            }
+
             velocity = 0.0f;
             jump_count = 0;
         }
