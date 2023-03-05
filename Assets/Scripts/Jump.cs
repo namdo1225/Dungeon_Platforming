@@ -15,9 +15,13 @@ public class Jump : MonoBehaviour
     private float velocity;
     private const float acceleration = 25f;
     private float initial_jump = 15.0f;
+
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         controller = this.GetComponent<CharacterController>();
         velocity = 0.0f;
         jump_count = 0;
@@ -58,6 +62,7 @@ public class Jump : MonoBehaviour
         // start new jump
         if (buffer_jump && canJump())
         {
+            animator.SetBool("Jump", true);
             if (dash.isDashing())
             {
                 dash.cancelDash();
@@ -79,6 +84,7 @@ public class Jump : MonoBehaviour
         // on the ground, not jumping
         if (velocity <= 0.0f && isGrounded)
         {
+            animator.SetBool("Jump", false);
             velocity = 0.0f;
             jump_count = 0;
         }

@@ -35,6 +35,7 @@ public class Movement : MonoBehaviour
             if (velocity < 0)
                 velocity = 0;
             velocity += acceleration * Time.deltaTime;
+            animator.SetFloat("Velocity", 1);
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -42,10 +43,12 @@ public class Movement : MonoBehaviour
             if (velocity > 0)
                 velocity = 0;
             velocity -= acceleration * Time.deltaTime;
+            animator.SetFloat("Velocity", 1);
         }
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
             velocity = 0;
+            animator.SetFloat("Velocity", 0);
         }
         // input rotation
         if (Input.GetKey(KeyCode.A))

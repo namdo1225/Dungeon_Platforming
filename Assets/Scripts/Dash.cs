@@ -13,9 +13,13 @@ public class Dash : MonoBehaviour
     private Vector3 dash_direction;
     private Camera cam;
     private float initial_dash = 15.0f;
+
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
         cur_dashes = 0;
@@ -25,6 +29,7 @@ public class Dash : MonoBehaviour
 
     void StartDash()
     {
+        animator.SetBool("Dash", true);
         if (cur_dashes < max_dashes)
         {
             dash_direction = transform.TransformDirection(Vector3.forward);
@@ -38,6 +43,7 @@ public class Dash : MonoBehaviour
     public void cancelDash()
     {
         dash_velocity = 0.0f;
+        animator.SetBool("Dash", false);
     }
 
     public bool isDashing()
@@ -63,6 +69,7 @@ public class Dash : MonoBehaviour
         }
         if (jump.isGrounded)
         {
+            animator.SetBool("Dash", false);
             cur_dashes = 0;
         }
     }

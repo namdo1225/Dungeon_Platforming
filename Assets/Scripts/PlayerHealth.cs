@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -14,6 +15,16 @@ public class PlayerHealth : MonoBehaviour
     private bool touching_enemy;
     private Vector3 knockback_direction;
     private float knockback_speed;
+
+    [SerializeField]
+    private RawImage healthImg;
+    [SerializeField]
+    private Texture health3;
+    [SerializeField]
+    private Texture health2;
+    [SerializeField]
+    private Texture health1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +41,12 @@ public class PlayerHealth : MonoBehaviour
             checkpoint = checkpoints[0];
         }
     }
+
     public int getHealth()
     {
         return health;
     }
+
     private void Update()
     {
         if (touching_enemy)
@@ -41,12 +54,14 @@ public class PlayerHealth : MonoBehaviour
             if (cur_time == hurt_interval)
             {
                 health--;
+                changeHealthImg();
                 Debug.Log("Ouch! Health: " + health);
                 if (health == 0)
                 {
                     Debug.Log("Respawn");
                     Respawn();
                     health = max_health;
+                    changeHealthImg();
                     knockback_speed = 0.0f;
                 }
                 // update heart UI here!
@@ -108,6 +123,20 @@ public class PlayerHealth : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             touching_enemy = false;
+        }
+    }
+
+    private void changeHealthImg()
+    {
+        if (health == 3)
+        {
+            healthImg.texture = health3;
+        } else if (health == 2)
+        {
+            healthImg.texture = health2;
+        } else if (health == 1)
+        {
+            healthImg.texture = health1;
         }
     }
 }
