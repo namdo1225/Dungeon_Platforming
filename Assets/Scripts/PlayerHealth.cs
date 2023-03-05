@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public float knockback = 10.0f;
     private float cur_time;
     private int health;
-    private GameObject checkpoint;
+    private GameObject checkpoint = null;
     private bool touching_enemy;
     private Vector3 knockback_direction;
     private float knockback_speed;
@@ -25,10 +25,19 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private Texture health1;
 
+    [SerializeField]
+    private AudioClip respawn;
+    [SerializeField]
+    private AudioClip death;
+
+    private AudioSource audSrc;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = this.GetComponent<CharacterController>();
+        audSrc = this.GetComponent<AudioSource>();
+
         cur_time = hurt_interval;
         health = max_health;
         checkpoint = null;
@@ -39,6 +48,7 @@ public class PlayerHealth : MonoBehaviour
         if (checkpoints.Length > 0)
         {
             checkpoint = checkpoints[0];
+            changeCheckParticle(true);
         }
     }
 
@@ -55,7 +65,6 @@ public class PlayerHealth : MonoBehaviour
             {
                 health--;
                 changeHealthImg();
-                Debug.Log("Ouch! Health: " + health);
                 if (health == 0)
                     Respawn();
             }
@@ -86,6 +95,7 @@ public class PlayerHealth : MonoBehaviour
     {
         health = max_health;
         changeHealthImg();
+        playAudClip(1);
         knockback_speed = 0.0f;
         if (checkpoint != null)
         {
@@ -96,11 +106,11 @@ public class PlayerHealth : MonoBehaviour
         {
             controller.Move(new Vector3(0.0f, 0.0f, 0.0f) - transform.position);
         }
+        playAudClip(0);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         var gameObject = collision.gameObject;
         if (gameObject.tag == "Enemy")
         {
@@ -109,10 +119,14 @@ public class PlayerHealth : MonoBehaviour
             knockback_direction = transform.position - gameObject.GetComponent<Renderer>().bounds.center;
             knockback_direction.Normalize();
         }
-        else if (gameObject.tag == "Checkpoint")
+        else if (gameObject.tag == "Checkpoint" && checkpoint != gameObject)
         {
-            Debug.Log("Checkpoint");
+            if (checkpoint != null)
+                changeCheckParticle(false);
+
             checkpoint = gameObject;
+            changeCheckParticle(true);
+
         }
     }
 
@@ -137,5 +151,22 @@ public class PlayerHealth : MonoBehaviour
         {
             healthImg.texture = health1;
         }
+    }
+
+    private void playAudClip(int type)
+    {
+        if (type == 0)
+            audSrc.PlayOneShot(respawn);
+        else if (type == 1)
+            audSrc.PlayOneShot(death);
+    }
+
+    private void changeCheckParticle(bool isTouched)
+    {
+        // set passive particle system on checkpoint to (in)active
+        checkpoint.transform.GetChild(1).gameObject.SetActive(!isTouched);
+
+        // set active checkpoint particle system on checkpoint to (in)active
+        checkpoint.transform.GetChild(2).gameObject.SetActive(isTouched);
     }
 }
