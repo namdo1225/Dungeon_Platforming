@@ -16,7 +16,9 @@ public class Zombie : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SwitchBool",0,unpredicatbilityInterval);
-        Destroy(this.gameObject, deathTime);
+
+        if (deathTime != 9999f)
+            Destroy(this.gameObject, deathTime);
     }
 
     // Update is called once per frame
@@ -32,6 +34,10 @@ public class Zombie : MonoBehaviour
             animator.SetBool("Attacking",false);
         }
         body.MovePosition(transform.position + transform.forward * moveSpeed * Time.deltaTime);
+
+        if (transform.position.y < -60f)
+            Destroy(this.gameObject);
+
     }
 
     // void OnCollisionEnter(Collision col)

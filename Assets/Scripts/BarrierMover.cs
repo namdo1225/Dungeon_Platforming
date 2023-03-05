@@ -9,6 +9,10 @@ public class BarrierMover : MonoBehaviour
     float xPos;
     Vector3 myPos;
     public float movementAmount=1;
+
+    [SerializeField]
+    private float movementSpeed = 1;
+
     void Start()
     {
         myPos = barrierPos.position;
@@ -17,7 +21,7 @@ public class BarrierMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xPos= Mathf.Sin(Time.time);
+        xPos= Mathf.Sin(Time.time * movementSpeed);
         barrierPos.position = myPos + new Vector3(xPos*movementAmount,0,0);
     }
 }
