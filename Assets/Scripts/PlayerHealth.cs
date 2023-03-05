@@ -57,14 +57,7 @@ public class PlayerHealth : MonoBehaviour
                 changeHealthImg();
                 Debug.Log("Ouch! Health: " + health);
                 if (health == 0)
-                {
-                    Debug.Log("Respawn");
                     Respawn();
-                    health = max_health;
-                    changeHealthImg();
-                    knockback_speed = 0.0f;
-                }
-                // update heart UI here!
             }
             if (cur_time > 0.0f)
             {
@@ -84,10 +77,16 @@ public class PlayerHealth : MonoBehaviour
             controller.Move(knockback_direction * knockback_speed * Time.deltaTime);
             knockback_speed -= knockback * Time.deltaTime;
         }
+
+        if (transform.position.y < -60.0f)
+            Respawn();
     }
 
     private void Respawn()
     {
+        health = max_health;
+        changeHealthImg();
+        knockback_speed = 0.0f;
         if (checkpoint != null)
         {
             Vector3 new_pos = checkpoint.GetComponent<Renderer>().bounds.center;
