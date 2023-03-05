@@ -156,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4969015666850704531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.81, z: 0}
+  m_LocalPosition: {x: 0, y: 1.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -175,8 +175,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
-  m_Intensity: 0.72
-  m_Range: 4.91
+  m_Intensity: 1
+  m_Range: 6.53
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -212,7 +212,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -548,5 +548,6 @@ MonoBehaviour:
   health3: {fileID: 2800000, guid: c4d98672b0a1b3a40847ff1f97932eea, type: 3}
   health2: {fileID: 2800000, guid: 063312244537e124aa470c6a99883a1b, type: 3}
   health1: {fileID: 2800000, guid: 00f5a5b6fe9bb0342b60c27e6d8b4a78, type: 3}
-  respawn: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
-  death: {fileID: 8300000, guid: c619008f1efb180488a78e4a966a3e16, type: 3}
+  respawnSFX: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  deathSFX: {fileID: 8300000, guid: c619008f1efb180488a78e4a966a3e16, type: 3}
+  hitSFX: {fileID: 8300000, guid: 7c47b20bb9874304a809dc5580d403ba, type: 3}

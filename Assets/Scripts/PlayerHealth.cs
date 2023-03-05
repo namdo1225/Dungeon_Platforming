@@ -26,9 +26,11 @@ public class PlayerHealth : MonoBehaviour
     private Texture health1;
 
     [SerializeField]
-    private AudioClip respawn;
+    private AudioClip respawnSFX;
     [SerializeField]
-    private AudioClip death;
+    private AudioClip deathSFX;
+    [SerializeField]
+    private AudioClip hitSFX;
 
     private AudioSource audSrc;
 
@@ -64,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (cur_time == hurt_interval)
             {
+                playAudClip(2);
                 health--;
                 changeHealthImg();
                 if (health == 0)
@@ -157,9 +160,11 @@ public class PlayerHealth : MonoBehaviour
     private void playAudClip(int type)
     {
         if (type == 0)
-            audSrc.PlayOneShot(respawn);
+            audSrc.PlayOneShot(respawnSFX);
         else if (type == 1)
-            audSrc.PlayOneShot(death);
+            audSrc.PlayOneShot(deathSFX);
+        else if (type == 2)
+            audSrc.PlayOneShot(hitSFX);
     }
 
     private void changeCheckParticle(bool isTouched)
