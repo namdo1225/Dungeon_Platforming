@@ -36,6 +36,7 @@ OR, use 7-zip to extract the zipped file instead. Either way, the problematic fi
 
 3. This is the Unity project folder.
 4. If using Unity Hub, click "Open" and navigate to the project folder to open it up.
+5. Scene to start in: MainMenu
 
 
 Rendering:
