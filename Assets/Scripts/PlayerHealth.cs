@@ -123,15 +123,6 @@ public class PlayerHealth : MonoBehaviour
             knockback_direction = transform.position - gameObject.GetComponent<Renderer>().bounds.center;
             knockback_direction.Normalize();
         }
-        else if (gameObject.tag == "Checkpoint" && checkpoint != gameObject)
-        {
-            if (checkpoint != null)
-                changeCheckParticle(false);
-
-            checkpoint = gameObject;
-            changeCheckParticle(true);
-
-        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -140,6 +131,20 @@ public class PlayerHealth : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             touching_enemy = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        var gameObject = col.gameObject;
+        if (gameObject.tag == "Checkpoint" && checkpoint != gameObject)
+        {
+            if (checkpoint != null)
+                changeCheckParticle(false);
+
+            checkpoint = gameObject;
+            changeCheckParticle(true);
+
         }
     }
 
