@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class Movement : MonoBehaviour
 {
     public CharacterController controller;
-    private float maxVelocity;
-    private float velocity;
-    private float acceleration;
-    public const float rotationSpeed = 180f;
+    private const float rotationSpeed = 4f;
     private Rigidbody rigid;
     private Animator animator;
-    private Camera cam;
 
+    private Vector3 playerVelocity;
+    private bool groundedPlayer;
+    [SerializeField]
+    private float playerSpeed = 2.0f;
+    [SerializeField]
+    private float gravityValue = -9.81f;
+    [SerializeField]
+    private InputActionReference movControl;
+
+    private Transform camTransform;
 
     [SerializeField]
     private AudioClip stepSFX;
@@ -21,6 +29,8 @@ public class Movement : MonoBehaviour
     private float footStepInterval = 0.5f;
     private float footStepDelta = 0f;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,65 +38,47 @@ public class Movement : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         audSrc = this.GetComponent<AudioSource>();
-
-        cam = Camera.main;
-        maxVelocity = 10.0f;
-        acceleration = 20.0f;
-        velocity = 0.0f;
+        camTransform = Camera.main.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
         {
-            // changing directions
-            if (velocity < 0)
-                velocity = 0;
-            velocity += acceleration * Time.deltaTime;
-            animator.SetFloat("Velocity", 1);
-
-            playAudClip();
-
+            playerVelocity.y = 0f;
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            // changing directions
-            if (velocity > 0)
-                velocity = 0;
-            velocity -= acceleration * Time.deltaTime;
-            animator.SetFloat("Velocity", 1);
 
-            playAudClip();
-        }
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        Vector2 mov = movControl.action.ReadValue<Vector2>();
+        Vector3 move = new Vector3(mov.x, 0, mov.y);
+        move = camTransform.forward * move.z + camTransform.right * move.x;
+        move.y = 0f;
+        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        // Changes the height position of the player..
+        /*
+        if (jumpControl.action.triggered && groundedPlayer)
         {
-            velocity = 0;
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }*/
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
+
+        if (mov != Vector2.zero)
+        {
+            float targetAngle = Mathf.Atan2(mov.x, mov.y) * Mathf.Rad2Deg + camTransform.eulerAngles.y;
+            Quaternion rot = Quaternion.Euler(0f, targetAngle, 0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * rotationSpeed);
+            playAudClip();
+            animator.SetFloat("Velocity", 1);
+        } else
+        {
             animator.SetFloat("Velocity", 0);
         }
-        // input rotation
-        if (Input.GetKey(KeyCode.A))
-        {
-            controller.transform.Rotate(Vector3.up, -180 * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            controller.transform.Rotate(Vector3.up, 180 * Time.deltaTime);
-        }
-        // cap velocity
-        if (velocity > maxVelocity)
-        {
-            velocity = maxVelocity;
-        }
-        if (velocity < -maxVelocity)
-        {
-            velocity = -maxVelocity;
-        }
-        // get rotation
-        Vector3 direction = transform.TransformDirection(Vector3.forward);
-        direction.y = 0.0f;
-        // do move
-        controller.Move(direction * velocity * Time.deltaTime);
+
         footStepDelta += Time.deltaTime;
     }
 
@@ -98,5 +90,15 @@ public class Movement : MonoBehaviour
             footStepDelta = 0;
             audSrc.PlayOneShot(stepSFX);
         }
+    }
+
+    private void OnEnable()
+    {
+        movControl.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        movControl.action.Disable();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class Jump : MonoBehaviour
@@ -27,6 +28,9 @@ public class Jump : MonoBehaviour
 
     private AudioSource audSrc;
 
+    [SerializeField]
+    private InputActionReference jumpControl;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +54,7 @@ public class Jump : MonoBehaviour
     {
         velocity = 0;
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -57,7 +62,7 @@ public class Jump : MonoBehaviour
         {
             jump_count = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (jumpControl.action.triggered)
         {
             buffer_jump = true;
         }
@@ -111,5 +116,15 @@ public class Jump : MonoBehaviour
         move.y = velocity * Time.deltaTime;
         controller.Move(move);
         isGrounded = controller.isGrounded;
+    }
+
+    private void OnEnable()
+    {
+        jumpControl.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        jumpControl.action.Disable();
     }
 }

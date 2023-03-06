@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
     private GameObject menus;
     private bool pause = false;
+
+    [SerializeField]
+    private InputActionReference escControl;
 
     // Start is called before the first frame update
     private void Start()
@@ -17,7 +21,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (escControl.action.triggered)
         {
             pause = !pause;
             if (pause)
@@ -49,5 +53,15 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    private void OnEnable()
+    {
+        escControl.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        escControl.action.Disable();
     }
 }

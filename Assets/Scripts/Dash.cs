@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class Dash : MonoBehaviour
@@ -20,6 +21,9 @@ public class Dash : MonoBehaviour
     private AudioClip dashSFX;
 
     private AudioSource audSrc;
+
+    [SerializeField]
+    private InputActionReference dashControl;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +66,7 @@ public class Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (dashControl.action.triggered)
         {
             StartDash();
         }
@@ -80,5 +84,15 @@ public class Dash : MonoBehaviour
             animator.SetBool("Dash", false);
             cur_dashes = 0;
         }
+    }
+
+    private void OnEnable()
+    {
+        dashControl.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        dashControl.action.Disable();
     }
 }
