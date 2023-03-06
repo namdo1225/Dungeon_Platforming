@@ -27,8 +27,8 @@ Topics implemented:
 Instructions:
 - Tested on Windows 10/11.
 
-1. Download zipped file "GAME351_Final.zip" from D2L.
-2. Extract zipped file. The zipped file should contain a folder named "GAME351_Final".
+1. Download zipped file "GAME351_FinalProject.zip" from D2L.
+2. Extract zipped file. The zipped file should contain a folder named "GAME351_FinalProject".
 
 WARNING: On Windows 10/11, you might be prompted by the Windows built-in .zip file extractor about some files that cannot be un-zipped.
 Please SKIP all of the problematic files (do not skip them one-by-one as that could take a while).
@@ -60,19 +60,21 @@ Dash and jump can be somewhat combined.
 
 Works Cited:
 - Balloon Ghosts:			https://assetstore.unity.com/packages/3d/animations/balloon-ghost-with-breakable-parts-209499
-- Basic Motions: 			https://assetstore.unity.com/packages/3d/animations/basic-motions-free-154271
+- Basic Motions:			https://assetstore.unity.com/packages/3d/animations/basic-motions-free-154271
 - Brick walls:
-	- 				https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530
-	- 				https://assetstore.unity.com/packages/2d/textures-materials/wood/stylized-wood-texture-153499
-- Campfire/Torches Prefabs: 	https://assetstore.unity.com/packages/3d/environments/campfires-torches-models-and-fx-242552
-- Cartoon Particles: 		https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565
-- Dungeon Clutters/Items: 		https://assetstore.unity.com/packages/3d/environments/dungeons/lowpoly-dungeon-modules-108997
-- Flag: 				https://assetstore.unity.com/packages/3d/props/exterior/cloth-animation-based-flag-65842
-- Fireplace sound: 			https://soundbible.com/1543-Fireplace.html
-- Lava: 				https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943
+	-				https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530
+	-				https://assetstore.unity.com/packages/2d/textures-materials/wood/stylized-wood-texture-153499
+- Campfire/Torches Prefabs:		https://assetstore.unity.com/packages/3d/environments/campfires-torches-models-and-fx-242552
+- Cartoon Particles:			https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565
+- Dungeon Clutters/Items:		https://assetstore.unity.com/packages/3d/environments/dungeons/lowpoly-dungeon-modules-108997
+- Flag:				https://assetstore.unity.com/packages/3d/props/exterior/cloth-animation-based-flag-65842
+- Fireplace sound:			https://soundbible.com/1543-Fireplace.html
+- Lava:				https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943
+- Lose SFX:				https://pixabay.com/sound-effects/descending-pitch-lost-3-10257/
 - Metal and Concrete Barriers:	https://assetstore.unity.com/packages/3d/props/exterior/metal-and-concrete-barriers-231794
-- Player Character: 			https://assetstore.unity.com/packages/3d/characters/humanoids/humans/anime-girl-character-akane-214048
-- Player Control/Camera Script: 	https://www.youtube.com/watch?v=ImuCx_XVaEQ
-- SFX - RPG: 				https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708
-- Soundtracks - Halloween: 		https://assetstore.unity.com/packages/audio/music/spooky-soundtrack-183507
+- Player Character:			https://assetstore.unity.com/packages/3d/characters/humanoids/humans/anime-girl-character-akane-214048
+- Player Control/Camera Script:	https://www.youtube.com/watch?v=ImuCx_XVaEQ
+- SFX - RPG:				https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708
+- Soundtracks - Halloween:		https://assetstore.unity.com/packages/audio/music/spooky-soundtrack-183507
 - Zombie creature:			https://assetstore.unity.com/packages/3d/characters/creatures/zombie-creature-194674
+- Win SFX:				https://pixabay.com/sound-effects/winfantasia-6912/
