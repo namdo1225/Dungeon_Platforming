@@ -14,6 +14,8 @@ public class PrefabSpawner : MonoBehaviour
             {
                 Instantiate(enemyPrefab,point.transform.position,point.transform.rotation);
             }
+
+            Destroy(this.gameObject, 5f);
         }
     }
 }
