@@ -97,20 +97,22 @@ public class PlayerHealth : MonoBehaviour
 
     private void Respawn()
     {
+        controller.enabled = false;
         health = max_health;
         changeHealthImg();
         playAudClip(1);
         knockback_speed = 0.0f;
         if (checkpoint != null)
         {
-            Vector3 new_pos = checkpoint.GetComponent<Renderer>().bounds.center;
-            controller.Move(new_pos - transform.position);
+            Vector3 new_pos = checkpoint.GetComponent<BoxCollider>().transform.position + new Vector3(0, 1, 0);
+            transform.position = new_pos;
         }
         else
         {
-            controller.Move(new Vector3(0.0f, 0.0f, 0.0f) - transform.position);
+            transform.position = Vector3.zero;
         }
         playAudClip(0);
+        controller.enabled = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -120,7 +122,7 @@ public class PlayerHealth : MonoBehaviour
         {
             touching_enemy = true;
             knockback_speed = knockback;
-            knockback_direction = transform.position - gameObject.GetComponent<Renderer>().bounds.center;
+            knockback_direction = transform.position - gameObject.GetComponent<Rigidbody>().transform.position;
             knockback_direction.Normalize();
         }
     }
