@@ -1,3 +1,7 @@
+/**
+ * Description: Class to control the lifetime of Balloon enemies.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +38,7 @@ public class Balloon : MonoBehaviour
         body.MovePosition(transform.position + transform.forward * moveSpeed * Time.deltaTime);
     }
 
+    // Randomize switching value of a boolean variable.
     void SwitchBool()
     {
         switcher = Random.Range(0,2);

@@ -1,3 +1,7 @@
+/**
+ * Description: Script to control player's translation and rotation (based on camera).
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,8 +33,6 @@ public class Movement : MonoBehaviour
     private float footStepInterval = 0.5f;
     private float footStepDelta = 0f;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,29 +46,24 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
 
+        // move and/or rotate player (based on camera)
         Vector2 mov = movControl.action.ReadValue<Vector2>();
         Vector3 move = new Vector3(mov.x, 0, mov.y);
         move = camTransform.forward * move.z + camTransform.right * move.x;
         move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        // Changes the height position of the player..
-        /*
-        if (jumpControl.action.triggered && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }*/
-
+        // control player's gravity and y down translation
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        // if movement vector is not 0, then move/rotate the player.
         if (mov != Vector2.zero)
         {
             float targetAngle = Mathf.Atan2(mov.x, mov.y) * Mathf.Rad2Deg + camTransform.eulerAngles.y;
@@ -79,10 +76,11 @@ public class Movement : MonoBehaviour
             animator.SetFloat("Velocity", 0);
         }
 
+        // increase time passed since the last footstep audio clip played.
         footStepDelta += Time.deltaTime;
     }
 
-
+    // Method to play the footstep audio clip.
     private void playAudClip()
     {
         if (footStepDelta > footStepInterval)
@@ -92,11 +90,13 @@ public class Movement : MonoBehaviour
         }
     }
 
+    // Method to enable getting certain inputs from player
     private void OnEnable()
     {
         movControl.action.Enable();
     }
 
+    // Method to disable getting certain inputs from player
     private void OnDisable()
     {
         movControl.action.Disable();

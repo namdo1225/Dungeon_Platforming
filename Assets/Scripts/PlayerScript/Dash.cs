@@ -1,3 +1,7 @@
+/**
+ * Description: Script to control player's dash (Shift key).
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,12 +42,15 @@ public class Dash : MonoBehaviour
         dash_velocity = 0.0f;
     }
 
+    // Method to start a dash, including playing an animation and sfx.
     void StartDash()
     {
-        animator.SetBool("Dash", true);
-        audSrc.PlayOneShot(dashSFX);
+        // if player has not reached the maximum amount of dashes, then go ahead and start dash.
         if (cur_dashes < max_dashes)
         {
+            animator.SetBool("Dash", true);
+            audSrc.PlayOneShot(dashSFX);
+
             dash_direction = transform.TransformDirection(Vector3.forward);
             dash_direction.y = 0.3f;
             dash_velocity = initial_dash;
@@ -52,12 +59,14 @@ public class Dash : MonoBehaviour
         }
     }
 
+    // Method to cancel a dash.
     public void cancelDash()
     {
         dash_velocity = 0.0f;
         animator.SetBool("Dash", false);
     }
 
+    // Check if the player is dashing.
     public bool isDashing()
     {
         return dash_velocity > 0.0f;
@@ -86,11 +95,13 @@ public class Dash : MonoBehaviour
         }
     }
 
+    // Method to enable getting certain inputs from player
     private void OnEnable()
     {
         dashControl.action.Enable();
     }
 
+    // Method to disable getting certain inputs from player
     private void OnDisable()
     {
         dashControl.action.Disable();

@@ -1,3 +1,7 @@
+/**
+ * Description: Script to control player's jump (Spacebar key).
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,11 +49,13 @@ public class Jump : MonoBehaviour
         isGrounded = false;
     }
 
+    // Check if player can jump (depends on whether they are grounded and haven't spammed jumps.
     bool canJump()
     {
         return isGrounded || jump_count < max_jumps;
     }
 
+    // Cancel a jump immediately and have them start fall.
     public void cancelJump()
     {
         velocity = 0;
@@ -59,13 +65,9 @@ public class Jump : MonoBehaviour
     void Update()
     {
         if (isGrounded)
-        {
             jump_count = 0;
-        }
         if (jumpControl.action.triggered)
-        {
             buffer_jump = true;
-        }
         if (buffer_jump)
         {
             buffer_timer += Time.deltaTime;
@@ -75,6 +77,7 @@ public class Jump : MonoBehaviour
                 buffer_timer = 0.0f;
             }
         }
+
         // start new jump
         if (buffer_jump && canJump())
         {
@@ -82,23 +85,20 @@ public class Jump : MonoBehaviour
             animator.SetBool("Jump", true);
             audSrc.PlayOneShot(jumpSFX);
             if (dash.isDashing())
-            {
                 dash.cancelDash();
-                // TODO: add super dash here!
-            }
             velocity = initial_jump;
             jump_count++;
             buffer_jump = false;
         }
+
         // fall down
         if (!isGrounded)
         {
             velocity -= acceleration * Time.deltaTime;
             if (velocity < -initial_jump)
-            {
                 velocity = -initial_jump;
-            }
         }
+
         // on the ground, not jumping
         if (velocity <= 0.0f && isGrounded)
         {
@@ -112,17 +112,20 @@ public class Jump : MonoBehaviour
             velocity = 0.0f;
             jump_count = 0;
         }
+
         Vector3 move = new Vector3();
         move.y = velocity * Time.deltaTime;
         controller.Move(move);
         isGrounded = controller.isGrounded;
     }
 
+    // Enable getting certain inputs from the player.
     private void OnEnable()
     {
         jumpControl.action.Enable();
     }
 
+    // Disable getting certain inputs from the player.
     private void OnDisable()
     {
         jumpControl.action.Disable();

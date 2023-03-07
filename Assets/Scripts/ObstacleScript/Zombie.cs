@@ -1,16 +1,30 @@
+/**
+ * Description: Class to control the lifetime of Zombie enemies.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    public Rigidbody body;
-    public float moveSpeed;
+    [SerializeField]
+    private Rigidbody body;
+
+    [SerializeField]
+    public float moveSpeed = 1f;
+
+    [SerializeField]
     public Animator animator;
+
+    [SerializeField]
     public float deathTime = 45f;
+
+    [SerializeField]
     [Range(0.25f,2f)]
     public float unpredicatbilityInterval = 0.5f;
-    int switcher;
+    
+    private int switcher;
 
     // Start is called before the first frame update
     void Start()
@@ -40,17 +54,9 @@ public class Zombie : MonoBehaviour
 
     }
 
-    // void OnCollisionEnter(Collision col)
-    // {
-    //     if (col.GetComponent<IsPlayer>())
-    //     {
-    //         Destroy(this.gameObject);
-    //     }
-    // }
-
+    // Randomized setting values of a boolean variable.
     void SwitchBool()
     {
         switcher = Random.Range(0,2);
-        //Debug.Log(switcher);
     }
 }

@@ -1,3 +1,7 @@
+/**
+ * Description: Script to load the game scene once the player chooses to respawn.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

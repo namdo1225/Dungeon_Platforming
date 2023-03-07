@@ -1,13 +1,17 @@
+/**
+ * Description: Script to load the game scene once the player chooses to respawn.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Win_Condition : MonoBehaviour
 {
-    //public MovementInput movement;
-        void OnTriggerEnter(Collider other)
+
+    // Method to trigger the win scene once player has entered a defined collider.
+    void OnTriggerEnter(Collider other)
     {
-        //movement.enabled = false;
         SceneManager.LoadScene(3);
     }
 }
