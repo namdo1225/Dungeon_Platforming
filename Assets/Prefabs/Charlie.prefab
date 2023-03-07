@@ -77,7 +77,6 @@ GameObject:
   - component: {fileID: 4487637834408773353}
   - component: {fileID: 733227202009871021}
   - component: {fileID: 9201231024517491259}
-  - component: {fileID: 6167865765933605246}
   - component: {fileID: 8091946096703820378}
   m_Layer: 0
   m_Name: Charlie
@@ -166,18 +165,6 @@ MonoBehaviour:
   animator: {fileID: 2469345166738145747}
   deathTime: 30
   unpredicatbilityInterval: 0.5
---- !u!114 &6167865765933605246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2469345167282290632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bc0a7c189bd74327976b89b6c8eb9c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &8091946096703820378
 AudioSource:
   m_ObjectHideFlags: 0
@@ -190,7 +177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 458937436079165640, guid: c23c4bee30f450d44b3678a282fbbee8,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2b21ef916f6943c439b71a7c74568878, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

@@ -466,18 +466,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &977833362204503374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3357530477663821994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7bcda819ea394a22b4acc24cbb2e782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2475064444397179220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +482,7 @@ MonoBehaviour:
   jump: {fileID: 2475064444397179221}
   max_dashes: 1
   dashSFX: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  dashControl: {fileID: 0}
 --- !u!114 &2475064444397179221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +503,7 @@ MonoBehaviour:
   buffer_timer: 0
   jumpSFX: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
   landSFX: {fileID: 8300000, guid: eaae8fe8d600e1f459f34aa5757fa3b8, type: 3}
+  jumpControl: {fileID: 0}
 --- !u!114 &2475064444397179223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +517,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2475064444397179222}
+  playerSpeed: 2
+  gravityValue: -9.81
+  movControl: {fileID: 0}
   stepSFX: {fileID: 8300000, guid: 21070b8b5e91adc418a2431cbde9b60f, type: 3}
 --- !u!114 &4827434854740003555
 MonoBehaviour:

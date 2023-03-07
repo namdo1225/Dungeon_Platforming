@@ -672,7 +672,6 @@ GameObject:
   - component: {fileID: 8890212224511265558}
   - component: {fileID: 376898774197143968}
   - component: {fileID: 3624283783347090879}
-  - component: {fileID: 7914289697137982492}
   - component: {fileID: 7420589827239957745}
   m_Layer: 0
   m_Name: Duke
@@ -744,18 +743,6 @@ MonoBehaviour:
   animator: {fileID: 8890212224510803231}
   deathTime: 30
   unpredicatbilityInterval: 1
---- !u!114 &7914289697137982492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8890212224511265640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bc0a7c189bd74327976b89b6c8eb9c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &7420589827239957745
 AudioSource:
   m_ObjectHideFlags: 0
