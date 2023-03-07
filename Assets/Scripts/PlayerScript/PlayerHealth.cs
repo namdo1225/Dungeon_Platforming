@@ -1,3 +1,8 @@
+/**
+ * Description: Class is used to control player's health, including when and where they respawn
+ * after losing all hearts.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +50,8 @@ public class PlayerHealth : MonoBehaviour
         checkpoint = null;
         knockback_direction = new Vector3(0, 0, 0);
         knockback_speed = 0.0f;
-        // get default checkpoint
+
+        // get default checkpoint and set that as the current checkpoint.
         var checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
         if (checkpoints.Length > 0)
         {
@@ -55,15 +61,15 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public int getHealth()
-    {
-        return health;
-    }
-
+    // Update is called every frame
     private void Update()
     {
+
+        // If touching enemy
         if (touching_enemy)
         {
+
+            // If invincibility frame has passed for player, then hurt player.
             if (cur_time == hurt_interval)
             {
                 playAudClip(2);
@@ -72,6 +78,8 @@ public class PlayerHealth : MonoBehaviour
                 if (health == 0)
                     Respawn();
             }
+
+            // continue adjusting invincibility frame for player
             if (cur_time > 0.0f)
             {
                 cur_time -= Time.deltaTime;
@@ -85,6 +93,8 @@ public class PlayerHealth : MonoBehaviour
         {
             cur_time = hurt_interval;
         }
+
+        // handle knockback
         if (knockback_speed > 0.0f)
         {
             controller.Move(knockback_direction * knockback_speed * Time.deltaTime);
@@ -95,6 +105,7 @@ public class PlayerHealth : MonoBehaviour
             Respawn();
     }
 
+    // Handles respawning player to an active checkpoint, including resetting their health.
     private void Respawn()
     {
         controller.enabled = false;
@@ -115,6 +126,7 @@ public class PlayerHealth : MonoBehaviour
         controller.enabled = true;
     }
 
+    // Handles entering into a collision with enemies.
     private void OnCollisionEnter(Collision collision)
     {
         var gameObject = collision.gameObject;
@@ -127,6 +139,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // Handles exiting from a collision with enemies.
     private void OnCollisionExit(Collision collision)
     {
         var gameObject = collision.gameObject;
@@ -136,6 +149,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // Handles a triggering event with a checkpoint
     private void OnTriggerEnter(Collider col)
     {
         var gameObject = col.gameObject;
@@ -150,6 +164,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // Function changes the health image to reflect current player's health
     private void changeHealthImg()
     {
         if (health == 3)
@@ -164,6 +179,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // Function to play various audio clips based on the argument type.
     private void playAudClip(int type)
     {
         if (type == 0)
@@ -174,6 +190,7 @@ public class PlayerHealth : MonoBehaviour
             audSrc.PlayOneShot(hitSFX);
     }
 
+    // Change particle system of checkpoints to reflect (in)active checkpoints.
     private void changeCheckParticle(bool isTouched)
     {
         // set passive particle system on checkpoint to (in)active
