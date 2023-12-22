@@ -1,11 +1,11 @@
-Team Members:
+# Team Members:
 - Christine Tran, christinetatran
 - Alexander Sparza, alxndresparza
 - Patrick Comden, pscomden
 - Nam Do, don1
 
 
-Topics implemented:
+# Topics implemented:
 1. Terrains and Meshes		- Probuilder is used to generate the maze. Many meshes, prefabs, and materials are used to populate the maze.
 
 2. Scripting and OOP			- With the exception of "Movement.cs", minimal external sources are referred to. No external Unity
@@ -24,13 +24,14 @@ Topics implemented:
 					basic instructions graphics added.
 
 
-Instructions:
+# Instructions:
 - Tested on Windows 10/11.
 
 1. Download zipped file "GAME351_FinalProject.zip" from D2L.
 2. Extract zipped file. The zipped file should contain a folder named "GAME351_FinalProject".
 
-WARNING: On Windows 10/11, you might be prompted by the Windows built-in .zip file extractor about some files that cannot be un-zipped.
+## WARNING:
+On Windows 10/11, you might be prompted by the Windows built-in .zip file extractor about some files that cannot be un-zipped.
 Please SKIP all of the problematic files (do not skip them one-by-one as that could take a while).
 OR, use 7-zip to extract the zipped file instead. Either way, the problematic files do not seem related to the assets for this project.
 
@@ -39,19 +40,20 @@ OR, use 7-zip to extract the zipped file instead. Either way, the problematic fi
 5. Scene to start in: MainMenu
 
 
-Rendering:
+# Rendering:
 Render Pipeline Asset: Basic 3D Core (No Rendering Pipeline)
 
 
-Game name: Hell House
+# Game name: Hell House
 
 
-Backstory: A medieval maze, a silly balloon monster, and a walking leg?
+# Backstory:
+A medieval maze, a silly balloon monster, and a walking leg?
 Guide a lost girl through this silly yet eerie labyrinth to wake her up from 
 her twisted nightmare!
 
 
-Controls:
+# Controls:
 - WASD - Move
 - Shift - Dash
 - Space - Jump
@@ -59,7 +61,7 @@ Controls:
 Dash and jump can be somewhat combined.
 
 
-Works Cited:
+# Works Cited:
 - Balloon Ghosts:			https://assetstore.unity.com/packages/3d/animations/balloon-ghost-with-breakable-parts-209499
 - Basic Motions:			https://assetstore.unity.com/packages/3d/animations/basic-motions-free-154271
 - Brick walls:				https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530, https://assetstore.unity.com/packages/2d/textures-materials/wood/stylized-wood-texture-153499
