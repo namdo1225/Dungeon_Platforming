@@ -62,9 +62,7 @@ Dash and jump can be somewhat combined.
 Works Cited:
 - Balloon Ghosts:			https://assetstore.unity.com/packages/3d/animations/balloon-ghost-with-breakable-parts-209499
 - Basic Motions:			https://assetstore.unity.com/packages/3d/animations/basic-motions-free-154271
-- Brick walls:
-	-				https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530
-	-				https://assetstore.unity.com/packages/2d/textures-materials/wood/stylized-wood-texture-153499
+- Brick walls:				https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530, https://assetstore.unity.com/packages/2d/textures-materials/wood/stylized-wood-texture-153499
 - Campfire/Torches Prefabs:		https://assetstore.unity.com/packages/3d/environments/campfires-torches-models-and-fx-242552
 - Cartoon Particles:			https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565
 - Dungeon Clutters/Items:		https://assetstore.unity.com/packages/3d/environments/dungeons/lowpoly-dungeon-modules-108997
