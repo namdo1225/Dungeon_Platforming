@@ -1,3 +1,6 @@
+# Dungeon_Platforming
+Dungeon Platforming or Hell House is a platforming game that is made in Unity. It features moving obstacles, a complicated maze, checkpoints, and a wonderful level design.
+
 # Team Members:
 - Christine Tran, christinetatran
 - Alexander Sparza, alxndresparza
@@ -42,10 +45,6 @@ OR, use 7-zip to extract the zipped file instead. Either way, the problematic fi
 
 # Rendering:
 Render Pipeline Asset: Basic 3D Core (No Rendering Pipeline)
-
-
-# Game name:
-Hell House
 
 
 # Backstory:
